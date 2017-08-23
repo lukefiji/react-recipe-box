@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import RecipeList from "./RecipeList";
+import RecipeDetails from "./RecipeDetails";
 
 import "../App.css";
 
@@ -17,8 +18,11 @@ class App extends Component {
       details: {
         "Tomato & Onion Omelette": {
           ingredients: ["Tomato", "Onion", "4 Eggs"],
-          instructions:
-            "1. Slice tomatoes and onions. 2. Scramble eggs. 3. Put tomatoes and onions in eggs and cook."
+          instructions: [
+            "1. Slice tomatoes and onions.",
+            "2. Scramble eggs.",
+            "3. Put tomatoes and onions in eggs and cook."
+          ]
         }
       }
     };
@@ -44,10 +48,11 @@ class App extends Component {
         <div className="App-header">
           <h2>Recipe Box</h2>
         </div>
-        <p className="App-intro">
-          Selected Recipe: {this.state.selectedRecipe}
-        </p>
         <RecipeList recipes={this.state} selectRecipe={this.selectRecipe} />
+        <RecipeDetails
+          recipe={this.state.selectedRecipe}
+          recipeDetails={this.state.details[this.state.selectedRecipe]}
+        />
       </div>
     );
   }

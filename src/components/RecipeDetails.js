@@ -1,13 +1,28 @@
 import React from "react";
 
-const RecipeDetails = props => {
+const RecipeDetails = ({ recipeDetails, recipe }) => {
+  // Check for recipe ingredients
+  const ingredients =
+    recipeDetails && recipeDetails.ingredients
+      ? recipeDetails.instructions
+      : "No ingredients";
+
+  // Check for recipe instructions
+  const instructions =
+    recipeDetails && recipeDetails.instructions
+      ? recipeDetails.ingredients
+      : "No instructions";
+
   return (
     <div>
       <div>
-        {recipes.details[recipe].ingredients}
+        Selected Recipe: {recipe}
       </div>
       <div>
-        {recipes.details[recipe].instructions}
+        {instructions}
+      </div>
+      <div>
+        {ingredients}
       </div>
     </div>
   );
