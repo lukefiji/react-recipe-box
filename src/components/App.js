@@ -13,20 +13,24 @@ class App extends Component {
     // recipeNames
     this.state = {
       userEditing: false,
-      selectedRecipe: "Please select a recipe on the left side",
+      selectedRecipe: "Tomato & Onion Omelette",
       recipeList: ["Tomato & Onion Omelette", "Test 1", "Test 2"],
       details: {
         "Tomato & Onion Omelette": {
           ingredients: ["Tomato", "Onion", "4 Eggs"],
           instructions: [
-            "1. Slice tomatoes and onions.",
-            "2. Scramble eggs.",
-            "3. Put tomatoes and onions in eggs and cook."
+            "Slice tomatoes and onions.",
+            "Scramble eggs.",
+            "Mix tomatoes and onions in scrambled eggs and cook."
           ]
         }
       }
     };
   }
+
+  editIngredient = newIngredients => {
+    this.setState({});
+  };
 
   selectRecipe = recipe => {
     this.setState({ selectedRecipe: recipe });

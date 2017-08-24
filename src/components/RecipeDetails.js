@@ -1,31 +1,58 @@
-import React from "react";
+import React, { Component } from "react";
+import IngredientsList from "./IngredientsList";
+import InstructionsList from "./InstructionsList";
 
-const RecipeDetails = ({ recipeDetails, recipe }) => {
-  // Check for recipe ingredients
-  const ingredients =
-    recipeDetails && recipeDetails.ingredients
-      ? recipeDetails.instructions
-      : "No ingredients";
+class RecipeDetails extends Component {
+  constructor() {
+    super();
 
-  // Check for recipe instructions
-  const instructions =
-    recipeDetails && recipeDetails.instructions
-      ? recipeDetails.ingredients
-      : "No instructions";
+    this.state = {
+      ingredients: [],
+      instructions: []
+    };
+  }
 
-  return (
-    <div>
-      <div>
-        Selected Recipe: {recipe}
+  componentDidMount() {
+    const { recipeDetails } = this.props;
+
+    // Check for ingredients and add it to local state
+    if (recipeDetails && recipeDetails.ingredients) {
+      this.setState({ ingredients: recipeDetails.ingredients });
+    }
+
+    // Check for instructions and add it to local state
+    if (recipeDetails && recipeDetails.instructions) {
+      this.setState({ instructions: recipeDetails.instructions });
+    }
+  }
+
+  render() {
+    const { recipe, recipeDetails } = this.props;
+
+    // Check for recipe instructions
+    let instructions = "No instructions";
+    if (recipeDetails && recipeDetails.instructions) {
+      instructions = recipeDetails.instructions.map((instruction, i) =>
+        <div key={instruction}>
+          {i + 1}. {instruction}
+        </div>
+      );
+    }
+
+    return (
+      <div className="recipe__details">
+        <div>
+          Selected Recipe: {recipe}
+        </div>
+        <div className="ingredients">
+          <IngredientsList ingredients={this.state.ingredients} />
+        </div>
+        <div className="instructions">
+          <InstructionsList instructions={this.state.instructions} />
+        </div>
       </div>
-      <div>
-        {instructions}
-      </div>
-      <div>
-        {ingredients}
-      </div>
-    </div>
-  );
-};
+    );
+  }
+}
 
 export default RecipeDetails;
