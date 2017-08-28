@@ -26,6 +26,22 @@ class RecipeDetails extends Component {
     }
   }
 
+  saveIngredient = (oldIngredient, newIngredient) => {
+    const { ingredients } = this.state;
+    const i = ingredients.indexOf(oldIngredient);
+
+    // Save new ingredient if found in array
+    if (i >= 0) {
+      this.setState({
+        ingredients: [
+          ...ingredients.slice(0, i),
+          newIngredient,
+          ...ingredients.slice(i + 1)
+        ]
+      });
+    }
+  };
+
   render() {
     const { recipe, recipeDetails } = this.props;
 
@@ -45,7 +61,10 @@ class RecipeDetails extends Component {
           Selected Recipe: {recipe}
         </div>
         <div className="ingredients">
-          <IngredientsList ingredients={this.state.ingredients} />
+          <IngredientsList
+            ingredients={this.state.ingredients}
+            saveIngredient={this.saveIngredient}
+          />
         </div>
         <div className="instructions">
           <InstructionsList instructions={this.state.instructions} />

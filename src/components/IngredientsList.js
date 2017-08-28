@@ -4,8 +4,6 @@ import Ingredient from "./Ingredient";
 class IngredientsList extends Component {
   constructor() {
     super();
-
-    this.state = { ingredients: ["No Ingredients"] };
   }
 
   componentDidMount() {
@@ -20,17 +18,19 @@ class IngredientsList extends Component {
         key="No Ingredients"
         ingredient="No Ingredients"
         editIngredient={this.props.editIngredient}
+        saveIngredient={this.props.saveIngredient}
       >
         No Ingredients
       </Ingredient>
     );
 
-    if (this.state.ingredients) {
+    if (this.props.ingredients) {
       ingredients = this.props.ingredients.map(ingredient =>
         <Ingredient
           key={ingredient}
           ingredient={ingredient}
           editIngredient={this.props.editIngredient}
+          saveIngredient={this.props.saveIngredient}
         />
       );
     }

@@ -56,6 +56,7 @@ class App extends Component {
         <RecipeDetails
           recipe={this.state.selectedRecipe}
           recipeDetails={this.state.details[this.state.selectedRecipe]}
+          saveIngredient={this.saveIngredient}
         />
       </div>
     );

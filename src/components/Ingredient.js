@@ -25,6 +25,10 @@ class Ingredient extends Component {
     // If an edit has been made and has changed
     if (this.state.editing && this.state.ingredient !== this.props.ingredient) {
       console.log("Changed to:", this.state.ingredient);
+      this.setState({ ingredient: this.state.ingredient });
+
+      // Update IngredientsList state to reflect change in ingredient
+      this.props.saveIngredient(this.props.ingredient, this.state.ingredient);
     }
   };
 
